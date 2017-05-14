@@ -2,7 +2,7 @@ $(() => {
   const drawBoard = new DrawingBoard.Board('drawboard', {
     size: 24,
     controls: [
-      'Navigation',
+      { Navigation: { back: false, forward: false } },
     ],
     enlargeYourContainer: true,
   });
@@ -14,7 +14,6 @@ $(() => {
     },
     filesystem: true,
   });
-  const $submitBtn = $('.submit-btn');
   const $showResult = $('.classify-result');
   let result = [];
 
@@ -52,7 +51,7 @@ $(() => {
     chart.draw(data, options);
   }
 
-  $submitBtn.click(() => {
+  drawBoard.ev.bind('board:stopDrawing', () => {
     const ctx = drawBoard.ctx;
 
     // Scaled to 28 x 28
@@ -69,7 +68,7 @@ $(() => {
     const { data } = imageDataScaled;
     const inputImage = new Float32Array(784);
     for (let i = 0, len = data.length; i < len; i += 4) {
-      inputImgae[i / 4] = ((data[i] / 255) - 1) * -1;
+      inputImage[i / 4] = ((data[i] / 255) - 1) * -1;
     }
 
     model.ready()
@@ -77,8 +76,6 @@ $(() => {
         model.predict({ input: inputImage })
           .then((outputData) => {
             result = outputData.output;
-            console.log(result);
-            console.log(result.indexOf(Math.max(...result)));
             $showResult.html(`It should be ${result.indexOf(Math.max(...result))}`);
             google.charts.load('current', { packages: ['corechart', 'bar'] });
             google.charts.setOnLoadCallback(drawMultSeries);
