@@ -2,7 +2,7 @@ $(() => {
   const drawBoard = new DrawingBoard.Board('drawboard', {
     size: 24,
     controls: [
-      'Navigation',
+      { Navigation: { back: false, forward: false } },
     ],
     enlargeYourContainer: true,
   });
@@ -14,7 +14,6 @@ $(() => {
     },
     filesystem: true,
   });
-  const $submitBtn = $('.submit-btn');
   const $showResult = $('.classify-result');
   let result = [];
 
@@ -52,7 +51,7 @@ $(() => {
     chart.draw(data, options);
   }
 
-  $submitBtn.click(() => {
+  drawBoard.ev.bind('board:stopDrawing', () => {
     const ctx = drawBoard.ctx;
 
     // Scaled to 28 x 28
