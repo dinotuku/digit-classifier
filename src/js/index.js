@@ -19,7 +19,7 @@ $(() => {
 
   function drawMultSeries() {
     const data = google.visualization.arrayToDataTable([
-      ['Digit', 'Possibility', { role: 'style' }],
+      ['Digit', 'Probability', { role: 'style' }],
       ['0', result[0], 'black'],
       ['1', result[1], 'black'],
       ['2', result[2], 'black'],
@@ -33,7 +33,7 @@ $(() => {
     ]);
 
     const options = {
-      title: 'Possibility of each digit',
+      title: 'Probability of each digit',
       legend: { position: 'none' },
       animation: {
         duration: 300,
