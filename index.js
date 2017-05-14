@@ -77,8 +77,6 @@ $(() => {
         model.predict({ input: inputImage })
           .then((outputData) => {
             result = outputData.output;
-            console.log(result);
-            console.log(result.indexOf(Math.max(...result)));
             $showResult.html(`It should be ${result.indexOf(Math.max(...result))}`);
             google.charts.load('current', { packages: ['corechart', 'bar'] });
             google.charts.setOnLoadCallback(drawMultSeries);
