@@ -8,9 +8,9 @@ $(() => {
   });
   const model = new KerasJS.Model({
     filepaths: {
-      model: '../model/mnist_cnn.json',
-      weights: '../model/mnist_cnn_weights.buf',
-      metadata: '../model/mnist_cnn_metadata.json',
+      model: './model/mnist_cnn.json',
+      weights: './model/mnist_cnn_weights.buf',
+      metadata: './model/mnist_cnn_metadata.json',
     },
     filesystem: true,
   });
