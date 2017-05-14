@@ -6,24 +6,27 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="dist/drawingboard.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>KerasJS Practice</title>
+    <title>Keras.js Practice</title>
   </head>
   <body>
     <div class="App">
       <div class="App-header">
-        <h1>KerasJS Practice</h1>
+        <h1>Keras.js Practice</h1>
       </div>
       <div class="App-content">
-        <div id="drawboard"></div>
-        <button class="submit-btn">Predict</button>
-        <div class="nn-result">
-
+        <div class="Canvas">
+          <div id="drawboard"></div>
+          <canvas id="input-canvas-scaled" width="28" height="28" style="display:none;"></canvas>
+          <canvas id="input-canvas-centercrop" style="display:none;"></canvas>
         </div>
+        <button class="submit-btn">Predict</button>
+        <div class="classify-result"></div>
       </div>
     </div>
   </body>
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="dist/drawingboard.min.js"></script>
   <script src="dist/keras.js"></script>
+  <script src="dist/plotly-latest.min.js"></script>
   <script src="js/index.js"></script>
 </html>
