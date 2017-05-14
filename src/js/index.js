@@ -43,9 +43,11 @@ $(() => {
         model.predict({ input: this.input })
           .then((outputData) => {
             result = outputData.output;
+            const ans = result.indexOf(Math.max(...result));
+            const conf = (Math.max(...result) * 100).toFixed(2);
             console.log(result);
-            console.log(result.indexOf(Math.max(...result)));
-            $showResult.html(`It should be a ${result.indexOf(Math.max(...result))}.`);
+            console.log(ans);
+            $showResult.html(`It should be a ${ans} (${conf}%).`);
           })
           .catch((err) => {
             console.error(err);
