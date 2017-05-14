@@ -16,7 +16,41 @@ $(() => {
   });
   const $submitBtn = $('.submit-btn');
   const $showResult = $('.classify-result');
-  let result;
+  let result = [];
+
+  function drawMultSeries() {
+    const data = google.visualization.arrayToDataTable([
+      ['Digit', 'Possibility', { role: 'style' }],
+      ['0', result[0], 'black'],
+      ['1', result[1], 'black'],
+      ['2', result[2], 'black'],
+      ['3', result[3], 'black'],
+      ['4', result[4], 'black'],
+      ['5', result[5], 'black'],
+      ['6', result[6], 'black'],
+      ['7', result[7], 'black'],
+      ['8', result[8], 'black'],
+      ['9', result[9], 'black'],
+    ]);
+
+    const options = {
+      title: 'Possibility of each digit',
+      legend: { position: 'none' },
+      animation: {
+        duration: 300,
+        easing: 'inAndOut',
+        startup: true,
+      },
+      vAxis: {
+        ticks: [0, 0.25, 0.5, 0.75, 1],
+      },
+    };
+
+    const chart = new google.visualization.ColumnChart(
+      document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+  }
 
   $submitBtn.click(() => {
     const ctx = drawBoard.ctx;
@@ -33,19 +67,21 @@ $(() => {
 
     // Process image data for model input
     const { data } = imageDataScaled;
-    this.input = new Float32Array(784);
+    const inputImage = new Float32Array(784);
     for (let i = 0, len = data.length; i < len; i += 4) {
-      this.input[i / 4] = ((data[i] / 255) - 1) * -1;
+      inputImgae[i / 4] = ((data[i] / 255) - 1) * -1;
     }
 
     model.ready()
       .then(() => {
-        model.predict({ input: this.input })
+        model.predict({ input: inputImage })
           .then((outputData) => {
             result = outputData.output;
             console.log(result);
             console.log(result.indexOf(Math.max(...result)));
-            $showResult.html(`It should be a ${result.indexOf(Math.max(...result))}.`);
+            $showResult.html(`It should be ${result.indexOf(Math.max(...result))}`);
+            google.charts.load('current', { packages: ['corechart', 'bar'] });
+            google.charts.setOnLoadCallback(drawMultSeries);
           })
           .catch((err) => {
             console.error(err);
