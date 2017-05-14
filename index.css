@@ -1,14 +1,48 @@
 body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
   padding: 0;
   min-width: 240px;
   font-family: 'Open sans', sans-serif;
 }
 
+button {
+  color: #ffffff !important;
+  background-color: #000000 !important;
+  border-radius: 5px !important;
+	-moz-border-radius: 5px !important;
+	-webkit-border-radius: 5px !important;
+	border: 1px solid rgba(0,0,0,0.3) !important;
+	border-bottom-width: 3px !important;
+  outline: none !important;
+}
+
+button:hover {
+  background-color: #444444 !important;
+  border-color: rgba(0,0,0,0.5) !important;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 500px;
+  border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(20%,20%,40%,0.5);
+}
+
+.App-header {
+  width: 100%;
+  color: white;
+  background-color: black;
+  text-align: center;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 2px rgba(20%,20%,40%,0.5);
 }
 
 .App-content {
@@ -25,6 +59,10 @@ body {
   width: 240px;
 }
 
+.drawing-board-canvas-wrapper {
+  box-shadow: 0 0 5px rgba(20%,20%,40%,0.5);
+}
+
 .drawing-board-controls {
   left: 0 !important;
   margin-top: 12px !important;
@@ -37,14 +75,29 @@ body {
 .submit-btn {
   width: 215px;
   margin-top: 12px;
+  cursor: pointer;
 }
 
 .classify-result {
   margin-top: 12px;
 }
 
+#chart_div {
+  width: 360px;
+  height: 180px;
+}
+
 @media (max-width: 430px) {
   body {
     min-width: 100%;
+  }
+
+  .App {
+    width: 100%;
+  }
+
+  #chart_div {
+    width: 100%;
+    height: 50vw;
   }
 }
