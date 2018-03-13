@@ -8,7 +8,7 @@ Predict handwritten digits using Keras model.
 
 ## Demo
 
-A working live demo [https://dtk0528.github.io/digit-classifier](https://dtk0528.github.io/digit-classifier)
+A working live demo [https://dinotuku.github.io/digit-classifier](https://dinotuku.github.io/digit-classifier)
 
 ---
 
@@ -16,7 +16,7 @@ A working live demo [https://dtk0528.github.io/digit-classifier](https://dtk0528
 
 #### Get the source code  
 
-	git clone https://github.com/dtk0528/digit-classifier.git
+	git clone https://github.com/dinotuku/digit-classifier.git
 	cd digit-classifier
 	
 #### Download and install all the dependencies
